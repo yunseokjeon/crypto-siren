@@ -20,7 +20,7 @@ parameters = {
     'secret': secretKey,
     'exchange': 'binance',
     'symbol': 'BTC/USDT',
-    'interval': '1d',
+    'interval': '30m',
     'backtracks': '10'
 }
 
@@ -32,3 +32,5 @@ result = response.json()
 
 # Print result
 print(result)
+
+# [{'timestampHuman': '2023-05-28 07:30:00 (Sunday) UTC', 'timestamp': 1685259000, 'open': 27198.73, 'high': 27217.81, 'low': 27195.4, 'close': 27201.98, 'volume': 220.25207000000034, 'backtrack': 0}, ... ]
