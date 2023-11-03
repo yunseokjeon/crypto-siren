@@ -91,7 +91,7 @@ df.set_index('datetime', inplace=True)
 print(df)
 
 # 호가 조회
-print(binance.fetch_time())
+
 orderbook = binance.fetch_order_book('BTC/USDT')
 print(orderbook['asks'])
 print(orderbook['bids'])
