@@ -4,7 +4,10 @@ import pandas as pd
 
 # 현재가 조회
 binance = ccxt.binance()
-markets= binance.load_markets()
+binance.options['defaultType'] = 'future'
+binance.options['adjustForTimeDifference'] = True
+
+markets = binance.load_markets()
 
 print(markets.keys())
 print(len(markets))
@@ -88,14 +91,7 @@ df.set_index('datetime', inplace=True)
 print(df)
 
 # 호가 조회
-
-orderbook = binance.fetch_order_book('ETH/USDT')
+print(binance.fetch_time())
+orderbook = binance.fetch_order_book('BTC/USDT')
 print(orderbook['asks'])
 print(orderbook['bids'])
-
-
-
-
-
-
-
