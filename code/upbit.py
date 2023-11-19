@@ -10,6 +10,7 @@ import websocket  # websocket-client
 from multiprocessing import Process
 import asyncio
 import datetime
+import threading
 
 configs = Properties()
 with open('./resource/application.properties', 'rb') as config_file:
@@ -105,8 +106,81 @@ def socket():
     ws_app.run_forever()
 
 
+class SocketClient1(threading.Thread):
+    def __init__(self):
+        super().__init__()
+        self.url = "wss://api.upbit.com/websocket/v1"
+        self.ws = websocket.WebSocketApp(
+            url=self.url,
+            on_message=self.on_message,
+            on_error=self.on_error,
+            on_close=self.on_close,
+            on_open=self.on_open
+        )
+
+    def run(self):
+        while True:
+            self.ws.run_forever()
+
+    def on_message(self, ws, message):
+        print("thread trade")
+        data = message.decode('utf-8')
+        print(data)
+
+    def on_error(self, ws, err):
+        print(err)
+
+    def on_close(self, ws, status_code, msg):
+        print("closed!")
+
+    def on_open(self, ws):
+        print("connected!")
+        self.ws.send(
+            '[{"ticket":"test example"},{"type":"trade","codes":["KRW-BTC", "KRW-SOL"]}, {"format": "DEFAULT"}]')
+
+
+class SocketClient2(threading.Thread):
+    def __init__(self):
+        super().__init__()
+        self.url = "wss://api.upbit.com/websocket/v1"
+        self.ws = websocket.WebSocketApp(
+            url=self.url,
+            on_message=self.on_message,
+            on_error=self.on_error,
+            on_close=self.on_close,
+            on_open=self.on_open
+        )
+
+    def run(self):
+        while True:
+            self.ws.run_forever()
+
+    def on_message(self, ws, message):
+        print("thread ticker")
+        data = message.decode('utf-8')
+        print(data)
+
+    def on_error(self, ws, err):
+        print(err)
+
+    def on_close(self, ws, status_code, msg):
+        print("closed!")
+
+    def on_open(self, ws):
+        print("connected!")
+        self.ws.send(
+            '[{"ticket":"test example"},{"type":"ticker","codes":["KRW-BTC", "KRW-SOL"]}, {"format": "DEFAULT"}]')
+
+
 if __name__ == "__main__":
-    socket()
+    # socket()
+    lock = threading.Lock()
+    socket1 = SocketClient1()
+    socket2 = SocketClient2()
+
+    socket1.start()
+    socket2.start()
+
 
 '''
 https://docs.upbit.com/v1.4.0/reference/websocket-ticker
