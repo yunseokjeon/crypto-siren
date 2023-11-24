@@ -34,3 +34,11 @@
 
 [Docker Volume 개념 및 MySql을 Docker상에서 운용하는 방법](https://joonhwan.github.io/2018-11-14-fix-mysql-volume-share-issue/)
 
+# --noreload
+
+```
+> python manage.py runserver --noreload
+```
+
+[Execute code when Django starts ONCE only?](https://stackoverflow.com/questions/6791911/execute-code-when-django-starts-once-only)
+
