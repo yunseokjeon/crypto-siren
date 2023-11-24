@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import configparser
+from django.conf import settings
+import platform
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,10 +78,39 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+
+BASE_DIR = settings.BASE_DIR
+mysql_path = ''
+
+if platform.system() == 'Windows' :
+    config_path = f"%s\config\config.ini" % BASE_DIR
+else:
+    config_path = f"%s/config/config.ini" % BASE_DIR
+
+config = configparser.ConfigParser()
+config.read(config_path, encoding='utf-8')
+mysql_name = config.get('MySQL', 'name')
+mysql_user = config.get('MySQL', 'user')
+mysql_password = config.get('MySQL', 'password')
+mysql_host = config.get('MySQL', 'host')
+mysql_port = config.get('MySQL', 'port')
+
+DATABASES = {
+    'default' : {
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' : mysql_name,
+        'USER' : mysql_user,
+        'PASSWORD' : mysql_password,
+        'HOST': mysql_host,
+        'PASSWORD' : mysql_password,
     }
 }
 

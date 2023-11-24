@@ -20,3 +20,21 @@ UPBIT_KEY=<YourKey>
 
 UPBIT_SECRET=<YourSecret>
 
+# config.ini
+
+crypto-siren\watcher\config\config.ini
+
+```
+[Upbit]
+upbit_key=<YourKey>
+upbit_secret=<YourSecret>
+
+[MySQL]
+name=<YourName>
+user=<YourUser>
+password=<YourPassword>
+host=<YourIP>
+port=<YourPort>
+```
+
+

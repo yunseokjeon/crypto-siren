@@ -20,6 +20,10 @@
 
 # MySQL Docker 컨테이너 접속
 > docker exec -it mysql-container bash
+
+# 데이터베이스 만들기
+> mysql -u root -p
+mysql> CREATE DATABASE siren;
 ```
 
 [Docker를 사용하여 MySQL 설치하고 접속하기](https://poiemaweb.com/docker-mysql)
