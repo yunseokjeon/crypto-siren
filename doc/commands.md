@@ -41,7 +41,7 @@ mysql> CREATE DATABASE siren;
 # --noreload
 
 ```
-> python manage.py runserver --noreload
+> python manage.py runserver --noreload 0.0.0.0:8000
 ```
 
 [Execute code when Django starts ONCE only?](https://stackoverflow.com/questions/6791911/execute-code-when-django-starts-once-only)
