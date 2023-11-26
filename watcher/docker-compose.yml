@@ -5,7 +5,7 @@ services:
     image: mysql
     container_name: mysql-compose-container
     ports:
-      - 3307:3306 # HOST:CONTAINER
+      - 3306:3306 # HOST:CONTAINER
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     command:
