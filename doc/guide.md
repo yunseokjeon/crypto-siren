@@ -37,4 +37,12 @@ host=<YourIP>
 port=<YourPort>
 ```
 
+# .env
+
+crypto-siren\watcher\.env
+
+```
+MYSQL_ROOT_PASSWORD=1234
+```
+
 

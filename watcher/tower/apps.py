@@ -62,7 +62,7 @@ class SocketClient(threading.Thread):
 
     def on_message(self, ws, message):
         data = message.decode('utf-8')
-        if self.step < 100:
+        if self.step < 10:
             print("----- ----- ----- ----- ----- ----- -----")
             print()
             print(data)
