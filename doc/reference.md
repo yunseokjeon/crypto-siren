@@ -78,3 +78,10 @@ services:
 > docker compose logs web
 ```
 
+# Docker Compose -f option
+
+[Docker Compose 커맨드 사용법](https://www.daleseo.com/docker-compose/)
+
+```
+> docker-compose -f docker-compose-local.yml up
+```
