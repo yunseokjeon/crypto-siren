@@ -76,6 +76,11 @@ services:
 > docker compose build
 > docker compose up -d
 > docker compose logs web
+
+> docker-compose -f docker-compose-local.yml build
+> docker-compose -f docker-compose-local.yml down
+> docker-compose -f docker-compose-local.yml up -d
+> docker-compose -f docker-compose-local.yml logs web
 ```
 
 # Docker Compose -f option
@@ -85,3 +90,12 @@ services:
 ```
 > docker-compose -f docker-compose-local.yml up
 ```
+
+# [docker container에서 local db 접속하기](https://marklee1117.tistory.com/93)
+
+```
+host: 'host.docker.internal',
+```
+
+# [Docker Compose keep container running](https://stackoverflow.com/questions/38546755/docker-compose-keep-container-running)
+
