@@ -9,10 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     command:
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-#    volumes:
-#      - D:/mysql/data:/var/lib/mysql
+      - tail -F anything
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver --noreload 0.0.0.0:8000"

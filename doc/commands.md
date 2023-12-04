@@ -46,3 +46,11 @@ mysql> CREATE DATABASE siren;
 
 [Execute code when Django starts ONCE only?](https://stackoverflow.com/questions/6791911/execute-code-when-django-starts-once-only)
 
+# Docker image 빌드하기
+
+```
+> docker build -t watcher .
+> docker run --name watcher-container -d -p 8000:8000 watcher
+> docker start watcher-container
+> docker logs watcher-container
+```

@@ -95,13 +95,39 @@ if platform.system() == 'Windows' :
 else:
     config_path = f"%s/config/config.ini" % BASE_DIR
 
+print("----- ----- -----")
+
+print("BASE_DIR")
+print(BASE_DIR)
+print("config_path")
+print(config_path)
+
+print("----- ----- -----")
+
 config = configparser.ConfigParser()
 config.read(config_path, encoding='utf-8')
 mysql_name = config.get('MySQL', 'name')
 mysql_user = config.get('MySQL', 'user')
 mysql_password = config.get('MySQL', 'password')
 mysql_host = config.get('MySQL', 'host')
+# mysql_host = 'host.docker.internal'
 mysql_port = config.get('MySQL', 'port')
+
+print("----- ----- -----")
+
+print("mysql_name")
+print(mysql_name)
+print("mysql_user")
+print(mysql_user)
+print("mysql_password")
+print(mysql_password)
+print("mysql_host")
+print(mysql_host)
+print("mysql_port")
+print(mysql_port)
+
+print("----- ----- -----")
+
 
 DATABASES = {
     'default' : {
