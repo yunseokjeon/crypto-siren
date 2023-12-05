@@ -38,6 +38,21 @@ mysql> CREATE DATABASE siren;
 
 [Docker Volume 개념 및 MySql을 Docker상에서 운용하는 방법](https://joonhwan.github.io/2018-11-14-fix-mysql-volume-share-issue/)
 
+# MySQL 새로운 사용자 추가하기
+
+```SQL
+show databases;
+use siren;
+create user 'yun'@'%' identified by '<PASSWORD>';
+GRANT ALL privileges ON siren.* TO 'yun'@'%';
+flush privileges;
+```
+
+```
+> docker exec -it mysql-container bash
+> mysql --verbose --help | grep my.cnf
+```
+
 # --noreload
 
 ```

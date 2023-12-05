@@ -99,3 +99,10 @@ host: 'host.docker.internal',
 
 # [Docker Compose keep container running](https://stackoverflow.com/questions/38546755/docker-compose-keep-container-running)
 
+# ASUS DDNS
+
+설정 : 
+1) 192.168.50.1 -> WAN -> DDNS 
+2) 관리 -> 시스템 -> WAN 을 통한 웹 엑세스 사용 & HTTPS WAN 으로부터의 웹 엑세스 포트
+3) WAN -> 가상 서버 / 포트 포워딩 (ipconfig ->  IPv4 주소 -> 내부 IP 주소)
+
