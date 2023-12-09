@@ -35,6 +35,10 @@ user=<YourUser>
 password=<YourPassword>
 host=<YourIP>
 port=<YourPort>
+
+[Docker]
+;isDocker=docker_local  # localhost DB에 접근해야 하는, docker image
+isDokcer=local  
 ```
 
 # .env

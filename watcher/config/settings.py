@@ -14,10 +14,10 @@ from pathlib import Path
 import configparser
 from django.conf import settings
 import platform
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,7 +29,6 @@ SECRET_KEY = 'django-insecure-x5dna38%2i8nm_0&44l6n#(41+kaw@5yqqsza$p6wcs#vs08z4
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -90,7 +88,7 @@ DATABASES = {
 BASE_DIR = settings.BASE_DIR
 mysql_path = ''
 
-if platform.system() == 'Windows' :
+if platform.system() == 'Windows':
     config_path = f"%s\config\config.ini" % BASE_DIR
 else:
     config_path = f"%s/config/config.ini" % BASE_DIR
@@ -109,8 +107,13 @@ config.read(config_path, encoding='utf-8')
 mysql_name = config.get('MySQL', 'name')
 mysql_user = config.get('MySQL', 'user')
 mysql_password = config.get('MySQL', 'password')
-mysql_host = config.get('MySQL', 'host')
-# mysql_host = 'host.docker.internal'
+
+mysql_host = ''
+if config.get('Docker', 'isDocker') == 'local':
+    mysql_host = config.get('MySQL', 'host')
+elif config.get('Docker', 'isDocker') == 'docker_local':
+    mysql_host = 'host.docker.internal'
+
 mysql_port = config.get('MySQL', 'port')
 
 print("----- ----- -----")
@@ -128,18 +131,16 @@ print(mysql_port)
 
 print("----- ----- -----")
 
-
 DATABASES = {
-    'default' : {
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : mysql_name,
-        'USER' : mysql_user,
-        'PASSWORD' : mysql_password,
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': mysql_name,
+        'USER': mysql_user,
+        'PASSWORD': mysql_password,
         'HOST': mysql_host,
-        'PASSWORD' : mysql_password,
+        'PASSWORD': mysql_password,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -159,7 +160,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -170,7 +170,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
