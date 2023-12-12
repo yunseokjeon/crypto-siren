@@ -70,4 +70,19 @@ flush privileges;
 > docker logs watcher-container
 ```
 
+# Django migration
+
+```
+> python manage.py makemigrations tower
+> python manage.py migrate tower
+
+> python manage.py shell
+> from tower.models import CryptoTicker
+```
+
+# Error Code: 1044: Access denied for user ' ' '@' '%' to database
+
+```
+GRANT ALL PRIVILEGES ON *.* TO 'yun'@'%' WITH GRANT OPTION;
+```
 

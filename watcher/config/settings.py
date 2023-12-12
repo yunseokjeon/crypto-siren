@@ -139,6 +139,14 @@ DATABASES = {
         'PASSWORD': mysql_password,
         'HOST': mysql_host,
         'PASSWORD': mysql_password,
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': mysql_name,
+        'USER': mysql_user,
+        'PASSWORD': mysql_password,
+        'HOST': mysql_host,
+        'PASSWORD': mysql_password,
     }
 }
 
