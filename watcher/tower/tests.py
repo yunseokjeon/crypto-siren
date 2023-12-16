@@ -1,8 +1,9 @@
 from django.test import TestCase
-from .models import CryptoTicker
+from .models import *
 from datetime import datetime
 import pytz
 from django.shortcuts import get_object_or_404
+
 
 # python manage.py test
 # Create your tests here.
@@ -13,7 +14,6 @@ class TestModule(TestCase):
         pass
 
     def test_ticker(self):
-
         raw = {"type": "ticker",
                "code": "KRW-BTC",
                "opening_price": 49190000.0000,
@@ -82,4 +82,41 @@ class TestModule(TestCase):
         ticker.save()
         print(get_object_or_404(CryptoTicker, pk=ticker.pk).id)
 
-        self.assertEqual(1, 1)
+    def test_trade(self):
+        raw = {"type": "trade",
+               "code": "KRW-BTC",
+               "timestamp": 1700365437515,
+               "trade_date": "2023-11-19",
+               "trade_time": "03:43:57",
+               "trade_timestamp": 1700365437486,
+               "trade_price": 49083000.0000,
+               "trade_volume": 0.02430412,
+               "ask_bid": "ASK",
+               "prev_closing_price": 49165000.00000000,
+               "change": "FALL",
+               "change_price": 82000.00000000,
+               "sequential_id": 1700365437486000,
+               "stream_type": "REALTIME"
+               }
+
+        trade = CryptoTrade()
+        trade.exchange = "Upbit"
+        trade.code = raw["code"]
+        trade.server_timestamp = raw["timestamp"]
+
+        date = raw["trade_date"]
+        time = raw["trade_time"]
+        trade.trade_date = datetime(int(date[0:4]), int(date[5:7]), int(date[8:]), int(time[0:2]), int(time[3:5]),
+                                     int(time[6:]), tzinfo=pytz.UTC)
+
+        trade.trade_timestamp = raw["trade_timestamp"]
+        trade.trade_price = raw["trade_price"]
+        trade.trade_volume = raw["trade_volume"]
+        trade.ask_bid = raw["ask_bid"]
+        trade.change = raw["change"]
+        trade.change_price = raw["change_price"]
+        trade.sequential_id = raw["sequential_id"]
+
+        trade.save()
+        print(get_object_or_404(CryptoTrade, pk=trade.pk).id)
+

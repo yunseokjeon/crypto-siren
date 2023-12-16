@@ -77,7 +77,7 @@ flush privileges;
 > python manage.py migrate tower
 
 > python manage.py shell
-> from tower.models import CryptoTicker
+> from tower.models import *
 ```
 
 # Error Code: 1044: Access denied for user ' ' '@' '%' to database

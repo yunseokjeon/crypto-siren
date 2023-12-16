@@ -347,6 +347,6 @@ orderbook :
         {"ask_price":4.915E7,"bid_price":4.907E7,"ask_size":0.28373194,"bid_size":0.03797772},
         {"ask_price":4.9151E7,"bid_price":4.9069E7,"ask_size":0.08286282,"bid_size":0.19226482},
         {"ask_price":4.9152E7,"bid_price":4.9068E7,"ask_size":0.0399,"bid_size":0.00031920}],
-        "stream_type":"REALTIME"
+    "stream_type":"REALTIME"
 }
 '''
