@@ -38,6 +38,8 @@ mysql> CREATE DATABASE siren;
 
 [Docker Volume 개념 및 MySql을 Docker상에서 운용하는 방법](https://joonhwan.github.io/2018-11-14-fix-mysql-volume-share-issue/)
 
+[Docker 컨테이너에 데이터 저장 (볼륨/바인드 마운트)](https://www.daleseo.com/docker-volumes-bind-mounts/)
+
 # MySQL 새로운 사용자 추가하기
 
 ```SQL
