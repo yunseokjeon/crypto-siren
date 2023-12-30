@@ -106,3 +106,16 @@ host: 'host.docker.internal',
 2) 관리 -> 시스템 -> WAN 을 통한 웹 엑세스 사용 & HTTPS WAN 으로부터의 웹 엑세스 포트
 3) WAN -> 가상 서버 / 포트 포워딩 (ipconfig ->  IPv4 주소 -> 내부 IP 주소)
 
+# isBuyerMaker
+
+## [What does "buyer is maker" mean?](https://money.stackexchange.com/questions/90686/what-does-buyer-is-maker-mean)
+
+Others have made great explanations of the general theory behind maker/taker logic. However to answer the original question.
+
+If isBuyerMaker is true for the trade, it means that the order of whoever was on the buy side, was sitting as a bid in the orderbook for some time (so that it was making the market) and then someone came in and matched it immediately (market taker). So, that specific trade will now qualify as SELL and in UI highlight as redish. On the opposite isBuyerMaker=false trade will qualify as BUY and highlight greenish.
+
+Other exchanges label trades directly as buy or sell, don't know why Binance chose to approach it from such an awkward angle.
+
+## [Which means exactly: [isBuyerMaker] => 1](https://dev.binance.vision/t/which-means-exactly-isbuyermaker-1/16198)
+
+If isBuyerMaker is true it means that the Buyer of the order is the one who initially created the order (Maker) whilst the Seller is the Taker.
