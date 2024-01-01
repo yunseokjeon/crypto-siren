@@ -13,7 +13,7 @@ upbit_secret=<YourSecret>
 name=<YourName>
 user=<YourUser>
 password=<YourPassword>
-host=<YourIP>
+host=127.0.0.1
 port=<YourPort>
 
 [Docker]
@@ -40,13 +40,16 @@ MYSQL_ROOT_PASSWORD=<YourPassword>
 
 ```
 show databases;
+create database siren;
 use siren;
 create user 'yun'@'%' identified by '<PASSWORD>';
 GRANT ALL privileges ON siren.* TO 'yun'@'%';
 flush privileges;
 ```
 
-# Building a docker image and run container
+# Building a docker image and run a container
+
+Before running a container, migrate schema using `python manage.py migrate tower`.
 
 ```
 > cd watcher
