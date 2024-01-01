@@ -13,7 +13,7 @@ upbit_secret=<YourSecret>
 name=<YourName>
 user=<YourUser>
 password=<YourPassword>
-host=<YourIP>
+host=127.0.0.1
 port=<YourPort>
 
 [Docker]
