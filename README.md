@@ -36,7 +36,7 @@ MYSQL_ROOT_PASSWORD=<YourPassword>
 > docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -v mysql-volume:/var/lib/mysql -d -p  3306:3306 mysql:latest
 ```
 
-# Adding new user in MySQL
+# Adding a new user in MySQL
 
 ```
 show databases;
