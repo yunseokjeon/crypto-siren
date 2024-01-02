@@ -97,3 +97,41 @@ FROM information_schema.TABLES
 GROUP BY table_schema;
 ```
 
+# UTC 기준 1분 전 부터 데이터 조회
+
+```SQL
+# 현재 시간(KST)을 UTC로 변환하기
+select convert_tz(now(), '+00:00', '-09:00');
+
+select date_sub(convert_tz(now(), '+00:00', '-09:00'), interval 1 minute);
+
+select *
+from tower_cryptoticker
+where register_date
+          between date_sub(convert_tz(now(), '+00:00', '-09:00'), interval 1 minute)
+          and convert_tz(now(), '+00:00', '-09:00')
+order by register_date desc;
+
+select *
+from tower_cryptotrade
+where register_date
+          between date_sub(convert_tz(now(), '+00:00', '-09:00'), interval 1 minute)
+          and convert_tz(now(), '+00:00', '-09:00')
+order by register_date desc;
+
+select *
+from tower_cryptoorderbookmain
+where register_date
+          between date_sub(convert_tz(now(), '+00:00', '-09:00'), interval 1 minute)
+          and convert_tz(now(), '+00:00', '-09:00')
+order by register_date desc;
+
+select *
+from tower_cryptoorderbooksub
+where register_date
+          between date_sub(convert_tz(NOW(), '+00:00', '-09:00'), interval 1 minute)
+          and convert_tz(NOW(), '+00:00', '-09:00')
+order by register_date desc;
+
+```
+
