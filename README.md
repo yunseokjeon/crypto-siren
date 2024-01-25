@@ -17,7 +17,8 @@ host=127.0.0.1
 port=<YourPort>
 
 [Docker]
-isDocker=docker_local  
+isDocker=docker_local
+;isDocker=local
 ```
 
 2) crypto-siren/watcher/.env
