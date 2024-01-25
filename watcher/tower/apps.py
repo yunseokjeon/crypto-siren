@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-import threading
+import threading, time
 import websocket
 from jproperties import Properties
 import uuid
@@ -62,14 +62,28 @@ class SocketClient(threading.Thread):
 
     def run(self):
         while True:
-            self.ws.run_forever()
+            if not self.ws.sock:
+                self.ws.run_forever()
 
     def on_message(self, ws, message):
         data = message.decode('utf-8')
         self.process(data)
 
     def on_error(self, ws, err):
+        print('on_error')
         print(err)
+
+        time.sleep(10)
+        self.ws.sock = None
+        self.ws = websocket.WebSocketApp(
+            url=self.url,
+            header=headers,
+            on_message=self.on_message,
+            on_error=self.on_error,
+            on_close=self.on_close,
+            on_open=self.on_open
+        )
+        self.ws.run_forever()
 
     def on_close(self, ws, status_code, msg):
         print("closed!")
@@ -115,7 +129,7 @@ class SocketClient(threading.Thread):
             ticker.acc_trade_price_24h = raw["acc_trade_price_24h"]
             ticker.acc_trade_volume_24h = raw["acc_trade_volume_24h"]
 
-            ticker.save()
+            # ticker.save()
 
         elif raw["type"] == "trade" and raw["stream_type"] == "REALTIME":
             trade = CryptoTrade()
