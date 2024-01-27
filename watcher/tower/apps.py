@@ -73,7 +73,7 @@ class SocketClient(threading.Thread):
         print('on_error')
         print(err)
 
-        time.sleep(10)
+        time.sleep(5)
         self.ws.sock = None
         self.ws = websocket.WebSocketApp(
             url=self.url,
